@@ -1,0 +1,6 @@
+{
+  "name": "MuseScribe AI",
+  "description": "Transform audio and video recordings into professional sheet music instantly using AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["Music Transcription", "Score Rendering", "Multiple Export Formats"]
+}
