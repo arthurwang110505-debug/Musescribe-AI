@@ -17,3 +17,8 @@ functions/node_modules/
 functions/lib/
 
 .vercel
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
