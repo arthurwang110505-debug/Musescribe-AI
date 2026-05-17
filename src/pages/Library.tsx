@@ -31,12 +31,12 @@ export default function Library() {
 
   return (
     <div className="max-w-6xl mx-auto py-12 px-4">
-      <div className="flex items-center justify-between mb-16">
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-16 gap-6">
         <div>
-          <h1 className="text-4xl font-bold text-white mb-2">My Library</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">My Library</h1>
           <p className="text-slate-400 text-sm">Access and manage all your past transcriptions.</p>
         </div>
-        <div className="bg-white/5 border border-white/10 rounded-2xl px-6 py-3 flex items-center gap-3">
+        <div className="bg-white/5 border border-white/10 rounded-2xl px-6 py-3 flex items-center gap-3 self-start md:self-auto">
           <Music className="text-cyan-400" size={18} />
           <span className="text-sm font-bold text-white uppercase tracking-widest">{history.length} Scores Saved</span>
         </div>

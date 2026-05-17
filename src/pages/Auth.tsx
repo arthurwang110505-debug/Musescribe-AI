@@ -16,7 +16,7 @@ import {
   GoogleAuthProvider
 } from 'firebase/auth';
 import { auth } from '../lib/firebase';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
@@ -66,6 +66,12 @@ export default function Auth() {
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md bg-white/5 border border-white/10 rounded-[2.5rem] p-10 backdrop-blur-xl relative overflow-hidden"
       >
+        {/* Back to Home Button */}
+        <div className="absolute top-6 left-6 z-10">
+          <Link to="/" className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-cyan-400 transition-colors bg-white/5 px-3 py-1.5 rounded-full border border-white/10 hover:border-cyan-500/30">
+            <ArrowRight size={12} className="rotate-180" /> Home
+          </Link>
+        </div>
         {/* Background Glow */}
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-cyan-500/10 blur-[80px] -z-10"></div>
         

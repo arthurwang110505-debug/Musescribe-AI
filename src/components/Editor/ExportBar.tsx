@@ -3,10 +3,18 @@ import { Printer, Download } from 'lucide-react';
 interface ExportBarProps {
   onExportPDF: () => void;
   onDownloadAbc: () => void;
+  onDownloadMusicXML: () => void;
+  onDownloadTabs: () => void;
   onReset: () => void;
 }
 
-export default function ExportBar({ onExportPDF, onDownloadAbc, onReset }: ExportBarProps) {
+export default function ExportBar({ 
+  onExportPDF, 
+  onDownloadAbc, 
+  onDownloadMusicXML, 
+  onDownloadTabs, 
+  onReset 
+}: ExportBarProps) {
   return (
     <div className="mt-8 flex flex-wrap items-center justify-between gap-4 no-print pt-6 border-t border-white/10">
       <div className="flex gap-2 items-center">
@@ -21,8 +29,20 @@ export default function ExportBar({ onExportPDF, onDownloadAbc, onReset }: Expor
            onClick={onDownloadAbc} 
            className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-[10px] font-bold uppercase hover:bg-white/10 transition-colors flex items-center gap-2"
          >
-           <Download size={12} /> ABC
-         </button>
+            <Download size={12} /> ABC
+          </button>
+          <button 
+            onClick={onDownloadMusicXML} 
+            className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-[10px] font-bold uppercase hover:bg-white/10 transition-colors flex items-center gap-2"
+          >
+            <Download size={12} /> MusicXML
+          </button>
+          <button 
+            onClick={onDownloadTabs} 
+            className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-[10px] font-bold uppercase hover:bg-white/10 transition-colors flex items-center gap-2"
+          >
+            <Download size={12} /> Tabs
+          </button>
       </div>
       <div className="flex gap-3">
         <button 

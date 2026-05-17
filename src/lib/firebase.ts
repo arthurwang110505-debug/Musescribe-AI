@@ -15,7 +15,13 @@ const firebaseConfig = {
   measurementId: "G-308X7DGGET"
 };
 
-const app = initializeApp(firebaseConfig);
-export const functions = getFunctions(app);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+let app;
+try {
+  app = initializeApp(firebaseConfig);
+} catch (e) {
+  console.error("Firebase init error", e);
+}
+
+export const functions = app ? getFunctions(app) : null as any;
+export const auth = app ? getAuth(app) : null as any;
+export const db = app ? getFirestore(app) : null as any;

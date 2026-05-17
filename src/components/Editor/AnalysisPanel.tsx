@@ -74,16 +74,6 @@ export default function Sidebar({ isProcessing, metadata }: SidebarProps) {
         ))}
       </div>
 
-      {/* Pro Badge */}
-      <div className="mt-auto bg-gradient-to-br from-indigo-600 to-indigo-900 rounded-3xl p-6 relative overflow-hidden group">
-        <div className="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-        <TuningFork className="text-white/20 absolute -bottom-2 -right-2 rotate-12" size={80} />
-        <h4 className="text-white font-bold text-sm mb-1 relative z-10">Premium Member</h4>
-        <p className="text-indigo-200 text-[10px] mb-4 relative z-10">You have access to Gemini 1.5 Pro transcription models.</p>
-        <button className="w-full bg-white text-indigo-600 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-50 transition-colors relative z-10">
-          Manage Plan
-        </button>
-      </div>
     </aside>
   );
 }

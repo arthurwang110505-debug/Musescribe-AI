@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { 
   collection, 
   addDoc, 
@@ -27,7 +27,7 @@ export function useHistory() {
   const [loading, setLoading] = useState(false);
 
   const saveScore = useCallback(async (fileName: string, abcContent: string) => {
-    if (!user) return;
+    if (!user || !db) return;
     try {
       await addDoc(collection(db, 'transcriptions'), {
         userId: user.uid,
@@ -41,7 +41,7 @@ export function useHistory() {
   }, [user]);
 
   const fetchHistory = useCallback(async () => {
-    if (!user) return;
+    if (!user || !db) return;
     setLoading(true);
     try {
       const q = query(
@@ -62,14 +62,21 @@ export function useHistory() {
     }
   }, [user]);
 
-  const deleteScore = async (id: string) => {
+  const deleteScore = useCallback(async (id: string) => {
+    if (!db) return;
     try {
       await deleteDoc(doc(db, 'transcriptions', id));
       setHistory(prev => prev.filter(s => s.id !== id));
     } catch (err) {
       console.error('Error deleting score:', err);
     }
-  };
+  }, []);
 
-  return { history, loading, saveScore, fetchHistory, deleteScore };
+  return useMemo(() => ({ 
+    history, 
+    loading, 
+    saveScore, 
+    fetchHistory, 
+    deleteScore 
+  }), [history, loading, saveScore, fetchHistory, deleteScore]);
 }

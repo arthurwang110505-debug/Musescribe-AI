@@ -111,11 +111,16 @@ export default function AbcEditor({ value, onChange, selection }: AbcEditorProps
             <button
               key={tool.label}
               onClick={() => insertText(tool.snippet)}
-              className="flex items-center gap-1.5 px-2 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-md text-[10px] font-bold text-slate-300 transition-all"
-              title={`插入 ${tool.label}`}
+              draggable
+              onDragStart={(e) => {
+                e.dataTransfer.setData('text/plain', tool.snippet);
+                e.dataTransfer.effectAllowed = 'copy';
+              }}
+              className="flex items-center gap-1.5 px-2 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-md text-[10px] font-bold text-slate-300 transition-all cursor-grab active:cursor-grabbing"
+              title={`點擊插入或拖曳到下方代碼區: ${tool.label}`}
             >
-              <tool.icon size={12} className="text-cyan-400/70" />
-              <span className="hidden sm:inline">{tool.label}</span>
+              <tool.icon size={12} className="text-cyan-400/70 pointer-events-none" />
+              <span className="hidden sm:inline pointer-events-none">{tool.label}</span>
             </button>
           ))}
           
@@ -124,10 +129,10 @@ export default function AbcEditor({ value, onChange, selection }: AbcEditorProps
              <div className="absolute bottom-full right-0 mb-2 w-64 p-4 bg-stone-900 border border-white/10 rounded-2xl text-[10px] text-slate-400 hidden group-hover:block z-50 shadow-2xl backdrop-blur-xl">
                <p className="font-bold text-white mb-2 underline decoration-cyan-500">ABC 語法快速指南</p>
                <ul className="space-y-1.5 text-[9px]">
+                 <li><span className="text-cyan-400">拖曳工具</span> - 可直接將上方按鈕拖進代碼框內</li>
                  <li><span className="text-cyan-400">V:1 / V:2</span> - 定義多軌聲部</li>
                  <li><span className="text-cyan-400">[CDEFGAB]</span> - 基礎音階</li>
                  <li><span className="text-cyan-400">"Am7"</span> - 在音符前添加和弦</li>
-                 <li><span className="text-cyan-400">/2</span> - 時值減半, <span className="text-cyan-400">2</span> - 時值加倍</li>
                </ul>
              </div>
           </div>
